@@ -27,18 +27,19 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Create an instance of the YOLO model
+# Loads custome model
 model = YOLO("best.onnx")
 
-# Object classes
+# Object classes available
 classNames = ["cereal", "oil", "tomato-ketchup", "waterbottle"]
 
 # Confidence threshold
-min_confidence = 0.8  # Set your desired threshold here
+min_confidence = 0.8  
 
 
 Base = declarative_base()
 
+#Database schema
 class items(Base):
     __tablename__ = 'items'
  
@@ -46,12 +47,12 @@ class items(Base):
     name = db.Column(db.String(50))
     price = db.Column(db.Float)
 
-engine = db.create_engine('postgresql+psycopg2://postgres:admin@localhost/groceryItems')
+engine = db.create_engine('postgresql+psycopg2://postgres:admin@localhost/groceryItems') #Connection to Database
 
 Session = sessionmaker(bind=engine)
 session = Session()
 
-
+#Finds item price in database based on item name
 def searchByItemName(itemName):
 
     query = select(items).where(items.name.contains(itemName))
@@ -69,21 +70,17 @@ def searchByItemName(itemName):
         return json_data
 
     
-
-
-
-# This endpoint serves the HTML file containing the front end
 @app.get("/", response_class=HTMLResponse)
 async def read_root():
-    return "Wow"
+    return "Success"
 
-# WebSocket route to handle incoming video frames
+# WebSocket route to handle incoming video frames and item information
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
 
     try:
-        # Start webcam
+        # Starts webcam
         cap = cv2.VideoCapture(0)
         cap.set(3, 640)
         cap.set(4, 480)
@@ -98,7 +95,7 @@ async def websocket_endpoint(websocket: WebSocket):
                 counter = 0
                 detect=True
 
-            # Process and draw bounding boxes
+            # Process, draw bounding boxes, and send detected item information
             for r in results:
                 boxes = r.boxes
 
@@ -111,7 +108,7 @@ async def websocket_endpoint(websocket: WebSocket):
                         cv2.rectangle(img, (x1, y1), (x2, y2), (255, 0, 255), 3)
                         cls = int(box.cls[0])
                         cv2.putText(img, classNames[cls], (x1, y1), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
-                        await websocket.send_text(searchByItemName(classNames[cls]) )
+                        await websocket.send_text(searchByItemName(classNames[cls]) ) # Send the item information to the frontend
                         detect= False
                         counter=0
             

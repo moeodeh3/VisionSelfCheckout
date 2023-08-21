@@ -1,40 +1,43 @@
-import React, { useState, useEffect } from "react";
-import './MainPage.css';
-import GroceryItem from './GroceryItem';
+import React, { useState, useEffect } from "react"
+import './MainPage.css'
+import GroceryItem from './GroceryItem'
 import WebcamCaptureAndSend from './WebcamCaptureAndSend'
 
 
 export default function MainPage() {
-    const [total, setTotal] = useState(0);
-    const [itemsList, setItemsList] = useState([]);
+    const [total, setTotal] = useState(0)
+    const [itemsList, setItemsList] = useState([])
 
 
-    useEffect(() => {
-        const newTotal = itemsList.reduce((acc, grocery) => acc + grocery.price, 0);
-        setTotal(newTotal);
-    }, [itemsList]);
+    //Handles change in total
+    useEffect(() => {   
+        const newTotal = itemsList.reduce((acc, grocery) => acc + grocery.price, 0)
+        setTotal(newTotal)
+    }, [itemsList])
 
+    //Adds items to page
     function addNewItem(itemName, price) {
         const newItem = {
             id: itemsList.length + 1,
             item: itemName,
             price: price
-        };
+        }
 
-        setItemsList(prevItemsList => [...prevItemsList, newItem]);
+        setItemsList(prevItemsList => [...prevItemsList, newItem])
     }
 
 
+    //Removes items from page
     function removeOldItem(itemName) {
         setItemsList(prevItemList => {
-          const indexToRemove = prevItemList.findIndex(prevItem => prevItem.item === itemName);
+          const indexToRemove = prevItemList.findIndex(prevItem => prevItem.item === itemName)
           if (indexToRemove !== -1) {
-            const updatedList = [...prevItemList];
-            updatedList.splice(indexToRemove, 1);
-            return updatedList;
+            const updatedList = [...prevItemList]
+            updatedList.splice(indexToRemove, 1)
+            return updatedList
           }
-          return prevItemList;
-        });
+          return prevItemList
+        })
       }
       
       
@@ -61,5 +64,5 @@ export default function MainPage() {
 
 
         </div>
-    );
+    )
 }
