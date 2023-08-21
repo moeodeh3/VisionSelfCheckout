@@ -1,0 +1,26 @@
+.items--container{
+    width: 80vh;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+}
+
+.itemName{
+    font-weight: 450;
+    font-size: 15px;
+}
+
+.itemPrice{
+    font-weight: 600;
+    font-size: 17px;
+    margin-right: 10px;
+}
+
+.items--container--pricing{
+    display: flex;
+    align-items: center;
+}
+
+.xButton{
+    max-width: 18px;
+}

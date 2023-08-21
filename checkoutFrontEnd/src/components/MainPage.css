@@ -1,0 +1,39 @@
+
+body{
+    background-color: #FAF9F6;;
+    
+}
+
+.mainPage {
+    display: flex;
+    height: 95vh;
+  
+}
+
+.mainPage--items {
+    flex: 1;
+    width: 45vw;
+    border-right: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    margin-bottom: 70px;
+    
+}
+
+.mainPage--items--total{
+    height: 10vh;
+    width: 43vw;
+    position: absolute;
+    bottom: 0px;
+    border-top: 1px solid black;
+}
+
+
+
+
+.main--checkout{
+    width: 55vw;
+    
+}
+

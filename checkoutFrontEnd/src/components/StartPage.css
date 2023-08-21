@@ -1,0 +1,42 @@
+
+
+body{
+    background-color: #FAF9F6;
+}
+
+.main{
+    margin-top: 40px;
+    margin-left: 20px;
+    
+}
+
+.main--images{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+}
+
+.masterCard{
+    flex: 1;
+    max-width: 100px;;
+    border-radius: 5px;
+}
+
+.visa{
+    flex: 1;
+    margin-left: 10px;
+    max-width: 95px;
+    border-radius: 8px; 
+}
+
+.interac{
+    flex: 1;
+    margin-left: 10px;
+    max-width: 60px;
+}
+
+.start-button{
+    justify-content: center;
+    margin-top: 350px;
+}
