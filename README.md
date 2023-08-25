@@ -16,3 +16,10 @@ Originally the first approach was to use the Tensorflow library, but the trainin
 
 ## Takeaway
 While the implementation of object detection for self-checkout was feasible, it appears to lack scalability. In a world where grocery stores are constantly changing items and datasets on common grocery items remain limited, the ability to deploy such a program is economically questionable. The issue is highlighted when looking at the drop in precision off the class "oil." The class dataset contains 156 images, and showed a substantial drop in performance. The concept of mandating grocery stores to gather and label numerous products seems impractical and unlikely for them to undertake in.
+
+## Citations
+1. **Custom Dataset**: Roboflow dataset containing 1398 images across [all 4 classes](https://universe.roboflow.com/moe-odeh-l1ge1/moes-checkout).
+2. **Oil Dataset**: Roboflow dataset containing 474 images of [oil](https://universe.roboflow.com/ingredientmodel/oil-qh1x9/browse).
+4. **Cereal Dataset**: Roboflow dataset containing 156 images of [cereal](https://universe.roboflow.com/robocup2022-kogzd/cereal-j0nck).
+5. **Ketchup Dataset**: Roboflow dataset containing 280 images of [ketchup](https://universe.roboflow.com/graduation-project-3v6ak/ketchup-5ynkxe).
+6. **Water Dataset**: Roboflow dataset containing 488 images of [water](https://universe.roboflow.com/robocup2022-kogzd/waterbottle).
